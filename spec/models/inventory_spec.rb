@@ -19,4 +19,11 @@ RSpec.describe Inventory, type: :model do
       expect(inventory).to be_valid
     end
   end
+
+  describe 'associations' do
+    it 'belongs to an user' do
+      inventory = Inventory.create(name: 'Inventory 1', user_id: user.id)
+      expect(inventory.user).to eql(user)
+    end
+  end
 end
