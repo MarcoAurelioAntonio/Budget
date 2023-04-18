@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  prep_time: 
+  cook_time: 
+  description: MyText
+  public: false
+
+two:
+  user: two
+  name: MyString
+  prep_time: 
+  cook_time: 
+  description: MyText
+  public: false
