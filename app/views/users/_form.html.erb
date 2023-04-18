@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :role, style: "display: block" %>
-    <%= form.text_field :role %>
+    <%= form.select :role, options_for_select([["User", "user"], ["Admin", "admin"]], @user.role), {}, disabled: user.admin? ? false : true %>
   </div>
 
   <div>

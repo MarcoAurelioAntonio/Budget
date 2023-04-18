@@ -77,8 +77,11 @@ gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 # Rubocop
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-# Devise
+# Add Devise gem for authentication management
 gem 'devise'
 
 # Adding letter_opener gem for email testing
 gem 'letter_opener'
+
+# Adding CanCanCan gem for authorization management
+gem 'cancancan'
