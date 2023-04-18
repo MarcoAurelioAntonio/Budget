@@ -17,9 +17,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-    set_user
-  end
+  def edit; end
 
   # POST /users or /users.json
   def create
@@ -27,6 +25,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
         format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -41,6 +40,7 @@ class UsersController < ApplicationController
     set_user
     respond_to do |format|
       if @user.update(user_params)
+        format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
         format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -57,6 +57,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,6 +69,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:name, :role)
+  end
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :role)
