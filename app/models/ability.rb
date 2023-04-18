@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -33,13 +31,14 @@ class Ability
     user ||= User.new
 
     # Define a few sample abilities
-    
+
     if user.user?
       can :update, User, id: user.id
-      can :read , User
+      can :read, User
     end
 
     return unless user.admin?
+
     can :manage, :all
   end
 end
