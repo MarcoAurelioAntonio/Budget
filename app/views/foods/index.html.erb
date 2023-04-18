@@ -2,13 +2,22 @@
 
 <h1>Foods</h1>
 
+<%= link_to "Add food (new)", new_food_path %>
 <div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
-  <% end %>
+  <table>
+    <tr>
+      <td><strong>Name:</strong></td>
+      <td><strong>Measurement unit:</strong></td>
+      <td><strong>Price:</strong></td>
+      <td><strong>Quantity:</strong></td>
+      <td><strong>User:</strong></td>
+      <td><strong>Actions:</strong></td>
+    </tr>
+    <% @foods.each do |food| %>
+      <tr>
+        <%= render food %>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
-<%= link_to "New food", new_food_path %>
