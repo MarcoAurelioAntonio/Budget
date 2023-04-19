@@ -12,5 +12,5 @@
     measurement_unit = %w[kg g l ml].sample
     price = rand(1.0..10.0).round(2)
     quantity = rand(10..100)
-    Food.create!(name: name, measurement_unit: measurement_unit, price: price, quantity: quantity)
+    Food.create!(name: name, measurement_unit: measurement_unit, price: price)
   end
