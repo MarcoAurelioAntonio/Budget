@@ -31,10 +31,18 @@ class Ability
     user ||= User.new
 
     # Define a few sample abilities
+    if user.guest?
+      cannot :create, Recipe
+      cannot :read, Recipe, public: false
+      can :read, Recipe, public: true
+    end
 
     if user.user?
       can :update, User, id: user.id
       can :read, User
+      can :create, Recipe
+      can :destroy, Recipe, user_id: user.id
+      can :update, Recipe, user_id: user.id
     end
 
     return unless user.admin?
