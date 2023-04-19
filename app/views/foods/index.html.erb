@@ -16,6 +16,7 @@
     <% @foods.each do |food| %>
       <tr>
         <%= render food %>
+        <td><%= link_to "Show this food", food %></td>
       </tr>
     <% end %>
   </table>

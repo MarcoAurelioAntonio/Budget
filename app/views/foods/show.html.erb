@@ -1,10 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @food %>
+<table>
+  <tr>
+    <td><strong>Name:</strong></td>
+    <td><strong>Measurement unit:</strong></td>
+    <td><strong>Price:</strong></td>
+    <td><strong>Actions:</strong></td>
+   </tr>
+   <%= render @food %>
+   <td><%= link_to "Destroy this food", @food, method: :delete %></td>
+</table>
 
 <div>
   <%= link_to "Edit this food", edit_food_path(@food) %> |
   <%= link_to "Back to foods", foods_path %>
-
-  <%= button_to "Destroy this food", @food, method: :delete %>
 </div>
