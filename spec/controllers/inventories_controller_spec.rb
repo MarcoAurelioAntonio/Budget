@@ -283,5 +283,21 @@ RSpec.describe InventoriesController, type: :controller do
         expect(flash[:notice]).to eq('You are not authorized to delete this inventory.')
       end
     end
+
+    context 'when user is logged in but inventory does not exist' do
+      before do
+        user.confirm
+        sign_in user
+        delete :destroy, params: { id: 999 }
+      end
+
+      it 'redirects to the inventory index page' do
+        expect(response).to redirect_to inventories_path
+      end
+
+      it 'displays a flash message saying the inventory does not exist' do
+        expect(flash[:notice]).to eq('Inventory not found with id = 999')
+      end
+    end
   end
 end
