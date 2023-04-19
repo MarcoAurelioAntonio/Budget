@@ -44,4 +44,30 @@ RSpec.describe InventoriesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'when user is logged in and is the owner of the inventory' do
+      before do
+        user.confirm
+        sign_in user
+        get :show, params: { id: inventory.id }
+      end
+
+      it 'assigns the current user to @user' do
+        expect(assigns(:user)).to eq user
+      end
+
+      it 'assigns the inventory to @inventory' do
+        expect(assigns(:inventory)).to eq inventory
+      end
+
+      it 'renders the show template' do
+        expect(response).to render_template :show
+      end
+
+      it 'returns a success status code' do
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
 end
