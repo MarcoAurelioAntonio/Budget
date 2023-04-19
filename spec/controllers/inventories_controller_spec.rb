@@ -210,5 +210,19 @@ RSpec.describe InventoriesController, type: :controller do
         expect(response).to render_template(:new)
       end
     end
+
+    context 'when user is not logged in' do
+      it 'redirects to the login page' do
+        post :create, params: { inventory: { name: 'Test Inventory' } }
+        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'does not create a new inventory' do
+        expect do
+          post :create, params: { inventory: { name: 'Test Inventory' } }
+        end.not_to change(Inventory, :count)
+      end
+    end
   end
 end
