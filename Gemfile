@@ -86,3 +86,6 @@ gem 'letter_opener'
 
 # Adding CanCanCan gem for authorization management
 gem 'cancancan'
+
+# Addind faker gem for fake data
+gem 'faker'
