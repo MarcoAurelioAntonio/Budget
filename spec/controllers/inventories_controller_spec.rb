@@ -299,5 +299,19 @@ RSpec.describe InventoriesController, type: :controller do
         expect(flash[:notice]).to eq('Inventory not found with id = 999')
       end
     end
+
+    context 'when user is not logged in' do
+      it 'redirects to the login page' do
+        delete :destroy, params: { id: inventory.id }
+
+        expect(response).to redirect_to new_user_session_path
+      end
+
+      it 'returns http redirect' do
+        delete :destroy, params: { id: inventory.id }
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
