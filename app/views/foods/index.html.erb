@@ -18,7 +18,11 @@
       <% @foods.each do |food| %>
         <tr>
           <%= render food %>
-          <td class="actions"><%= link_to "Show this food", food %></td>
+          <td class="actions">
+            <%= link_to "Show this food", food %>
+            <%= link_to "Edit this food", edit_food_path(food) %>
+          </td>
+          
         </tr>
       <% end %>
     </tbody>

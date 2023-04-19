@@ -54,10 +54,16 @@ h1 {
   border-collapse: collapse;
 }
 
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #foods th,
 #foods td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
