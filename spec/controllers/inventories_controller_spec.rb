@@ -119,4 +119,34 @@ RSpec.describe InventoriesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #new' do
+    context 'when user is logged' do
+      before do
+        user.confirm
+        sign_in user
+      end
+
+      it 'returns a success response' do
+        get :new
+        expect(response).to be_successful
+      end
+
+      it 'assigns a new inventory' do
+        get :new
+        expect(assigns(:inventory)).to be_a_new(Inventory)
+        expect(assigns(:inventory).user).to eq(user)
+      end
+
+      it 'assigns to current user' do
+        get :new
+        expect(assigns(:inventory).user).to eq(user)
+      end
+
+      it 'renders the new template' do
+        get :new
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end
