@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # crea 15 alimentos con datos aleatorios
-15.times do
+30.times do
     name = Faker::Food.dish
     measurement_unit = %w[kg g l ml].sample
     price = rand(1.0..10.0).round(2)

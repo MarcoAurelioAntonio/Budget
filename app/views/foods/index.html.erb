@@ -1,24 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<section class = "general-container">
+  <div class="notice"><%= notice %></div>
 
-<h1>Foods</h1>
+  <h1>Foods</h1>
 
-<%= link_to "Add food (new)", new_food_path %>
-<div id="foods">
-  <table>
-    <tr>
-      <td><strong>Name:</strong></td>
-      <td><strong>Measurement unit:</strong></td>
-      <td><strong>Price:</strong></td>
-      <td><strong>Quantity:</strong></td>
-      <td><strong>User:</strong></td>
-      <td><strong>Actions:</strong></td>
-    </tr>
-    <% @foods.each do |food| %>
+  <%= link_to "Add food (new)", new_food_path, class: 'add-food-new' %>
+
+  <table id="foods">
+    <thead>
       <tr>
-        <%= render food %>
-        <td><%= link_to "Show this food", food %></td>
+        <th>Name</th>
+        <th>Measurement unit</th>
+        <th>Price</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <%= render food %>
+          <td class="actions"><%= link_to "Show this food", food %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-</div>
 
+</section>
