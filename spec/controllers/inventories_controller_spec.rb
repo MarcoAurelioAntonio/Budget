@@ -256,5 +256,32 @@ RSpec.describe InventoriesController, type: :controller do
         expect(flash[:notice]).to eq('Inventory was successfully deleted.')
       end
     end
+
+    context 'when user is logged in and does not own the inventory' do
+      before do
+        user.confirm
+        sign_in user
+      end
+
+      it 'does not destroy the inventory' do
+        other_inventory2 = Inventory.create(name: 'Inventory 2', user: other_user)
+
+        expect do
+          delete :destroy, params: { id: other_inventory2.id }
+        end.to_not change(Inventory, :count)
+      end
+
+      it 'redirects to the inventories index page' do
+        delete :destroy, params: { id: other_inventory.id }
+
+        expect(response).to redirect_to inventories_path
+      end
+
+      it 'displays a unauthorize message' do
+        delete :destroy, params: { id: other_inventory.id }
+
+        expect(flash[:notice]).to eq('You are not authorized to delete this inventory.')
+      end
+    end
   end
 end
