@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :confirmable
   validates :name, presence: true, length: { maximum: 250 }
 
+  has_many :inventory
+
   def admin?
     role == 'admin'
   end
