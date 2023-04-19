@@ -225,4 +225,36 @@ RSpec.describe InventoriesController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
+    let(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
+    let(:other_user) { User.create(name: 'Sohidul Islam', email: 'sohidul@example.com', password: '12345678') }
+    let(:other_inventory) { Inventory.create(name: 'Inventory 2', user: other_user) }
+
+    context 'when user is logged in and owns the inventory' do
+      before do
+        user.confirm
+        sign_in user
+      end
+
+      it 'deletes the inventory' do
+        inventory2 = Inventory.create(name: 'Inventory 2', user:)
+
+        expect do
+          delete :destroy, params: { id: inventory2.id }
+        end.to change(Inventory, :count).by(-1)
+      end
+
+      it 'redirects to the inventories index page' do
+        delete :destroy, params: { id: inventory.id }
+        expect(response).to redirect_to(inventories_path)
+      end
+
+      it 'displays a success message' do
+        delete :destroy, params: { id: inventory.id }
+        expect(flash[:notice]).to eq('Inventory was successfully deleted.')
+      end
+    end
+  end
 end
