@@ -12,7 +12,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new(user_id: current_user.id)
+    @recipe = Recipe.new
+    @recipe.user_id = current_user.id
   end
 
   # GET /recipes/1/edit
@@ -21,7 +22,7 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
 
     respond_to do |format|
       if @recipe.save
@@ -65,6 +66,21 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:user_id, :name, :prep_time, :cook_time, :description, :public)
+      cook_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["cook_time(4i)"]}H#{params["recipe"]["cook_time(5i)"]}M")
+      prep_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["prep_time(4i)"]}H#{params["recipe"]["prep_time(5i)"]}M")
+      params["recipe"].delete("prep_time(1i)")
+      params["recipe"].delete("prep_time(2i)")
+      params["recipe"].delete("prep_time(3i)")
+      params["recipe"].delete("prep_time(4i)")
+      params["recipe"].delete("prep_time(5i)")
+      params["recipe"].delete("cook_time(1i)")
+      params["recipe"].delete("cook_time(2i)")
+      params["recipe"].delete("cook_time(3i)")
+      params["recipe"].delete("cook_time(4i)")
+      params["recipe"].delete("cook_time(5i)")
+      params[:recipe]["prep_time"] = prep_time
+      params[:recipe]["cook_time"] = cook_time
+      puts params["recipe"]
+      params.require(:recipe).permit(:name, :prep_time, :cook_time, :description, :public)
     end
 end

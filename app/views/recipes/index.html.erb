@@ -4,11 +4,16 @@
 
 <div id="recipes">
   <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
+    <% if can? :read, recipe %>
+      <%= render recipe %>
+    
+      <p>
+        <%= link_to "Show this recipe", recipe %>
+      </p>
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>
+<% if can? :create, Recipe && user_signed_in? %>
+  <%= link_to "New recipe", new_recipe_path %>
+<% end %>
