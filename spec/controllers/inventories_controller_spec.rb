@@ -162,4 +162,33 @@ RSpec.describe InventoriesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
+
+    context 'when user is logged in with valid params' do
+      let(:valid_params) { { inventory: { name: 'Test Inventory' } } }
+
+      before do
+        user.confirm
+        sign_in user
+      end
+
+      it 'creates a new inventory' do
+        expect do
+          post :create, params: valid_params
+        end.to change(Inventory, :count).by(1)
+      end
+
+      it 'redirects to the inventory page' do
+        post :create, params: valid_params
+        expect(response).to redirect_to(inventories_path(assigns(:inventory)))
+      end
+
+      it 'sets a flash notice' do
+        post :create, params: valid_params
+        expect(flash[:notice]).to eq('Inventory was successfully created.')
+      end
+    end
+  end
 end
