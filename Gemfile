@@ -85,3 +85,6 @@ gem 'letter_opener'
 
 # Adding CanCanCan gem for authorization management
 gem 'cancancan'
+
+# Add Devise Guests gem for guest user management
+gem 'devise-guests'
