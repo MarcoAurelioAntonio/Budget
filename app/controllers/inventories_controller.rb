@@ -35,7 +35,20 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @inventory = Inventory.find_by(id: params[:id])
+
+    if @inventory
+      if @inventory.user == current_user
+        @inventory.destroy
+        redirect_to inventories_path, notice: 'Inventory was successfully deleted.'
+      else
+        redirect_to inventories_path, notice: 'You are not authorized to delete this inventory.'
+      end
+    else
+      redirect_to inventories_path, notice: "Inventory not found with id = #{params[:id]}"
+    end
+  end
 
   private
 

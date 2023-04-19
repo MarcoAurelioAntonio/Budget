@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "users#index"
   resources :users
   resources :foods
-  resources :inventories, only: [:index, :show, :new, :create]
+  resources :inventories, only: [:index, :show, :new, :create, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
