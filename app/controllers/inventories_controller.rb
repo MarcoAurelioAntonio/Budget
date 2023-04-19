@@ -19,7 +19,10 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    @user = current_user
+    @inventory = @user.inventory.new
+  end
 
   def create; end
 
