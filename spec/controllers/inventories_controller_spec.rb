@@ -190,5 +190,25 @@ RSpec.describe InventoriesController, type: :controller do
         expect(flash[:notice]).to eq('Inventory was successfully created.')
       end
     end
+
+    context 'when user is logged in with invalid params' do
+      let(:invalid_params) { { inventory: { name: '' } } }
+
+      before do
+        user.confirm
+        sign_in user
+      end
+
+      it 'does not create a new inventory' do
+        expect do
+          post :create, params: invalid_params
+        end.not_to change(Inventory, :count)
+      end
+
+      it 'renders the new template' do
+        post :create, params: invalid_params
+        expect(response).to render_template(:new)
+      end
+    end
   end
 end
