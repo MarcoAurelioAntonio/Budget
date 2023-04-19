@@ -83,5 +83,24 @@ RSpec.describe InventoriesController, type: :controller do
         expect(flash[:alert]).to match(/need to sign in/)
       end
     end
+
+    context 'when user is logged in but is not the owner of the inventory' do
+      let(:other_user) { User.create(name: 'Sohidul Islam', email: 'sohidul@example.com', password: '12345678') }
+      let(:other_inventory) { Inventory.create(name: 'Inventory 2', user: other_user) }
+
+      before do
+        user.confirm
+        sign_in user
+        get :show, params: { id: other_inventory.id }
+      end
+
+      it 'redirects to the inventory index page' do
+        expect(response).to redirect_to(inventories_path)
+      end
+
+      it 'displays a flash unauthorized message' do
+        expect(flash[:notice]).to eq 'You are not authorized to view this inventory.'
+      end
+    end
   end
 end
