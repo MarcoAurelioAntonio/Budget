@@ -24,7 +24,22 @@ class InventoriesController < ApplicationController
     @inventory = @user.inventory.new
   end
 
-  def create; end
+  def create
+    @user = current_user
+    @inventory = @user.inventory.new(inventory_params)
+
+    if @inventory.save
+      redirect_to inventories_path(@inventory), notice: 'Inventory was successfully created.'
+    else
+      render :new
+    end
+  end
 
   def destroy; end
+
+  private
+
+  def inventory_params
+    params.require(:inventory).permit(:name)
+  end
 end
