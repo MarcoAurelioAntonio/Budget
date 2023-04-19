@@ -69,5 +69,19 @@ RSpec.describe InventoriesController, type: :controller do
         expect(response).to have_http_status(:success)
       end
     end
+
+    context 'when user is not logged in' do
+      before do
+        get :show, params: { id: inventory.id }
+      end
+
+      it 'redirects to the login page' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'displays a flash message asking to log in' do
+        expect(flash[:alert]).to match(/need to sign in/)
+      end
+    end
   end
 end
