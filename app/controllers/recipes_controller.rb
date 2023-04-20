@@ -1,9 +1,23 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy ]
+  # before_action :set_recipe, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index]
+
+  load_and_authorize_resource
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    # @recipes = Recipe.all
+    if params[:controller] == 'recipes' && params[:action] == 'index' && request.path == '/public_recipes'
+      @recipes = @recipes.where(public: true)
+      @recipe_display = 'public'
+      
+    elsif params[:controller] == 'recipes' && params[:action] == 'index' && request.path == '/recipes' && user_signed_in?
+      @recipes = @recipes.where(user_id: current_user)
+      @recipe_display = 'user_owned'
+    else
+      redirect_to public_recipes_path
+    end
+    @recipes.each {|recipe| puts recipe.id}
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -12,8 +26,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
-    @recipe.user_id = current_user.id
+    # @recipe = Recipe.new
+    # @recipe.user_id = current_or_guest_user.id
   end
 
   # GET /recipes/1/edit
@@ -22,8 +36,10 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = current_user.recipes.new(recipe_params)
-
+    # @recipe = current_or_guest_user.recipes.new(recipe_params)
+    @recipe.user_id = current_or_guest_user.id
+    puts "Aquí recipe"
+    puts @recipe
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
@@ -66,18 +82,18 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      cook_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["cook_time(4i)"]}H#{params["recipe"]["cook_time(5i)"]}M")
-      prep_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["prep_time(4i)"]}H#{params["recipe"]["prep_time(5i)"]}M")
-      params["recipe"].delete("prep_time(1i)")
-      params["recipe"].delete("prep_time(2i)")
-      params["recipe"].delete("prep_time(3i)")
-      params["recipe"].delete("prep_time(4i)")
-      params["recipe"].delete("prep_time(5i)")
-      params["recipe"].delete("cook_time(1i)")
-      params["recipe"].delete("cook_time(2i)")
-      params["recipe"].delete("cook_time(3i)")
-      params["recipe"].delete("cook_time(4i)")
-      params["recipe"].delete("cook_time(5i)")
+      cook_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["ck_time(4i)"]}H#{params["recipe"]["ck_time(5i)"]}M")
+      prep_time = ActiveSupport::Duration.parse("PT#{params["recipe"]["pp_time(4i)"]}H#{params["recipe"]["pp_time(5i)"]}M")
+      params["recipe"].delete("pp_time(1i)")
+      params["recipe"].delete("pp_time(2i)")
+      params["recipe"].delete("pp_time(3i)")
+      params["recipe"].delete("pp_time(4i)")
+      params["recipe"].delete("pp_time(5i)")
+      params["recipe"].delete("ck_time(1i)")
+      params["recipe"].delete("ck_time(2i)")
+      params["recipe"].delete("ck_time(3i)")
+      params["recipe"].delete("ck_time(4i)")
+      params["recipe"].delete("ck_time(5i)")
       params[:recipe]["prep_time"] = prep_time
       params[:recipe]["cook_time"] = cook_time
       puts params["recipe"]
