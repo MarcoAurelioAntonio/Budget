@@ -32,6 +32,7 @@ class Ability
 
     # Define a few sample abilities
     can :read, Recipe, public: true
+    can :manage, Food
 
     if user.admin?
       can :manage, :all

@@ -1,5 +1,8 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
+  
+  # Add it to bypass the authorization check of cancancan
+  skip_authorization_check
 
   # GET /foods or /foods.json
   def index
