@@ -1,23 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<section class = "general-container">
+  <div class="notice"><%= notice %></div>
 
-<h1>Foods</h1>
+  <h1>Foods</h1>
 
-<%= link_to "Add food (new)", new_food_path %>
-<div id="foods">
-  <table>
-    <tr>
-      <td><strong>Name:</strong></td>
-      <td><strong>Measurement unit:</strong></td>
-      <td><strong>Price:</strong></td>
-      <td><strong>Quantity:</strong></td>
-      <td><strong>User:</strong></td>
-      <td><strong>Actions:</strong></td>
-    </tr>
-    <% @foods.each do |food| %>
+  <%= link_to "Add food (new)", new_food_path, class: 'add-food-new' %>
+
+  <table id = "foods">
+    <thead>
       <tr>
-        <%= render food %>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <%= render food %>
+          <td class="actions">
+            <%= link_to "Delete", food_path(food), data: { turbo_method: :delete, turbo_confirm: "Are you  sure?"} %>
+            <%= link_to "Edit this food", edit_food_path(food) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-</div>
 
+</section>
