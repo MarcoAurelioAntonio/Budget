@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :recipes, foreign_key: 'user_id', dependent: :destroy
   validates :name, presence: true, length: { maximum: 250 }
 
+  has_many :inventory
+
   def admin?
     role == 'admin'
   end
