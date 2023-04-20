@@ -90,3 +90,5 @@ gem 'cancancan'
 
 # Addind faker gem for fake data
 gem 'faker'
+# Add Devise Guests gem for guest user management
+gem 'devise-guests'
