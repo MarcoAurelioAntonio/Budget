@@ -3,9 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   # GET /users or /users.json
-  def index
-
-  end
+  def index; end
 
   # GET /users/1 or /users/1.json
   def show

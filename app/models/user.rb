@@ -19,16 +19,16 @@ class User < ApplicationRecord
     role == 'user'
   end
 
-  def self.get_guest
+  def self.new_gest
     guest = find_by(guest: true)
-    guest.nil? ? create(name: "Guest", guest: true) : guest
+    guest.nil? ? create(name: 'Guest', guest: true) : guest
   end
 
   private
 
   def assign_admin_role_to_first_user
-    if User.count == 1
-      self.update(role: 'admin')
-    end
+    return unless User.count == 1
+
+    update(role: 'admin')
   end
 end
