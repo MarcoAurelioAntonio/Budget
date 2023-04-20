@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /users or /users.json
   def index
-    @users = User.all
+
   end
 
   # GET /users/1 or /users/1.json
@@ -22,6 +23,9 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    puts User.any?
+    puts User.count
+    @user.role = 'admin' unless User.any?
 
     respond_to do |format|
       if @user.save
