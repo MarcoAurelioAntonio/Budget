@@ -38,7 +38,6 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
-
     @food = Food.find(params[:id])
 
     respond_to do |format|
@@ -59,10 +58,10 @@ class FoodsController < ApplicationController
 
     redirect_to foods_path
 
-    #respond_to do |format|
+    # respond_to do |format|
     #  format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
     #  format.json { head :no_content }
-    #end
+    # end
   end
 
   private
