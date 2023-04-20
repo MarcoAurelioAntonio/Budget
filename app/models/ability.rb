@@ -28,17 +28,28 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
 
     # Handle the case where we don't have a current_user i.e. the user is a guest
-    user ||= User.new
+    user ||= User.new_guest
 
     # Define a few sample abilities
+    can :read, Recipe, public: true
+    can :manage, Food
 
-    if user.user?
-      can :update, User, id: user.id
-      can :read, User
+    if user.admin?
+      can :manage, :all
+      puts 'Admin'
+    elsif user.guest?
+      cannot :create, Recipe
+      cannot :read, Recipe, public: false
+      can :read, Recipe, public: true
+      puts 'Guest'
+    elsif user.user?
+      can %i[read update], User, id: user.id
+      can :read, Recipe, user_id: user.id
+      can :destroy, Recipe, user_id: user.id
+      can :create, Recipe
+      can :update, Recipe, user_id: user.id
+      puts 'User'
+      puts user.guest
     end
-
-    return unless user.admin?
-
-    can :manage, :all
   end
 end

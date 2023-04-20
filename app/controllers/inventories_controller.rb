@@ -1,6 +1,9 @@
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
 
+  # Add it to bypass the authorization check of cancancan
+  skip_authorization_check
+
   def index
     @user = current_user
     @inventories = @user.inventory
