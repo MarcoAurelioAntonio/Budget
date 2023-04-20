@@ -15,6 +15,7 @@ RSpec.describe InventoryFoodsController, type: :controller do
 
       it 'returns a success response' do
         get :new, params: { inventory_id: inventory.id }
+
         expect(response).to be_successful
       end
 
@@ -34,6 +35,20 @@ RSpec.describe InventoryFoodsController, type: :controller do
         get :new, params: { inventory_id: inventory.id }
 
         expect(response).to render_template(:new)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to the login page' do
+        get :new, params: { inventory_id: inventory.id }
+
+        expect(response).to redirect_to new_user_session_path
+      end
+
+      it 'returns http redirect' do
+        get :new, params: { inventory_id: inventory.id }
+
+        expect(response).to have_http_status(:redirect)
       end
     end
   end
