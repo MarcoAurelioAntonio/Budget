@@ -9,21 +9,25 @@ RSpec.describe InventoryFood, type: :model do
   describe 'validations' do
     it 'requires a quantity' do
       invalid_inventory_food = InventoryFood.new(quantity: nil, inventory:, food:)
+
       expect(invalid_inventory_food).to_not be_valid
     end
 
     it 'requires the quantity to be a number greater than or equal to 0' do
       invalid_inventory_food = InventoryFood.new(quantity: -1, inventory:, food:)
+
       expect(invalid_inventory_food).to_not be_valid
     end
 
     it 'requires an inventory' do
       invalid_inventory_food = InventoryFood.new(quantity: 10, food:)
+
       expect(invalid_inventory_food).to_not be_valid
     end
 
     it 'requires a food id' do
       invalid_inventory_food = InventoryFood.new(quantity: 10, inventory:)
+
       expect(invalid_inventory_food).to_not be_valid
     end
 
@@ -31,6 +35,16 @@ RSpec.describe InventoryFood, type: :model do
       inventory_food = InventoryFood.new(quantity: 10, inventory:, food:)
 
       expect(inventory_food).to be_valid
+    end
+  end
+
+  describe 'associations' do
+    it 'belongs to an inventory' do
+      expect(inventory_food.inventory).to eql(inventory)
+    end
+
+    it 'belongs to an food' do
+      expect(inventory_food.food).to eql(food)
     end
   end
 end
