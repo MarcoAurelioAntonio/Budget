@@ -1,2 +1,24 @@
-<h1>ShoppingList#index</h1>
-<p>Find me in app/views/shopping_list/index.html.erb</p>
+<h1>Shopping List</h1>
+<p>Amount of food to buy = <%= @total_quantity %></p>
+<p>Total value of food needed = <%= @total_value %></p>
+<p>Recipe <%= @recipe.id %> = <%= link_to 'Recipe', recipe_path(@recipe) %></p>
+<p>Inventory <%= @inventory.id %> = <%= link_to 'Inventory', inventory_path(@inventory) %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shopping_list.each do |food_name, details| %>
+      <tr>
+        <td><%= food_name %></td>
+        <td><%= details[:quantity] %></td>
+        <td><%= details[:price] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
