@@ -3,11 +3,13 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = Food.all
+    @foods = Food.all.order(created_at: :desc)
   end
 
   # GET /foods/1 or /foods/1.json
-  def show; end
+  def show
+    @food = Food.find(params[:id])
+  end
 
   # GET /foods/new
   def new
@@ -15,7 +17,9 @@ class FoodsController < ApplicationController
   end
 
   # GET /foods/1/edit
-  def edit; end
+  def edit
+    @food = Food.find(params[:id])
+  end
 
   # POST /foods or /foods.json
   def create
@@ -34,6 +38,9 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
+
+    @food = Food.find(params[:id])
+
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to food_url(@food), notice: 'Food was successfully updated.' }
@@ -47,12 +54,15 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
+    @food = Food.find(params[:id])
     @food.destroy
 
-    respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to foods_path
+
+    #respond_to do |format|
+    #  format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+    #  format.json { head :no_content }
+    #end
   end
 
   private
@@ -64,6 +74,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :user_id)
+    params.require(:food).permit(:name, :measurement_unit, :price)
   end
 end

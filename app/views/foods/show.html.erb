@@ -1,16 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<table>
-  <tr>
-    <td><strong>Name</strong></td>
-    <td><strong>Measurement unit</strong></td>
-    <td><strong>Price</strong></td>
-    <td><strong>Actions</strong></td>
-   </tr>
-   <%= render @food %>
-   <td><%= link_to "Destroy this food", @food, method: :delete %></td>
+<div>
+  <%= link_to "Back to foods", foods_path, class: 'add-food-new' %>
+</div>
+
+<table id="foods">
+  <thead>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Quantity</strong></td>
+      <td><strong>Price</strong></td>
+      <td><strong>Actions</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @food %>
+    <td>
+      <%= link_to "Delete", @food , method: :delete, data: { confirm: 'Are you sure?' }, class: 'add-food-new' %>
+    </td>
+  </tbody>
 </table>
 
-<div>
-  <%= link_to "Back to foods", foods_path %>
-</div>

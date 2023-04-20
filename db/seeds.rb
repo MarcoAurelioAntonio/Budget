@@ -8,9 +8,8 @@
 
 # crea 15 alimentos con datos aleatorios
 30.times do
-    name = Faker::Food.dish
-    measurement_unit = %w[kg g l ml].sample
-    price = rand(1.0..10.0).round(2)
-    quantity = rand(10..100)
-    Food.create!(name: name, measurement_unit: measurement_unit, price: price)
+  name = Faker::Food.dish
+  quantity = rand(1.0..10.0).round(2)
+  price = rand(1.0..10.0).round(2)
+  Food.create!(name: name, quantity: quantity, price: price)
   end

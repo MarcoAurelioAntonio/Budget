@@ -5,11 +5,11 @@
 
   <%= link_to "Add food (new)", new_food_path, class: 'add-food-new' %>
 
-  <table id="foods">
+  <table id = "foods">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Measurement unit</th>
+        <th>Quantity</th>
         <th>Price</th>
         <th>Actions</th>
       </tr>
@@ -19,10 +19,9 @@
         <tr>
           <%= render food %>
           <td class="actions">
-            <%= link_to "Show this food", food %>
+            <%= link_to "Delete", food_path(food), data: { turbo_method: :delete, turbo_confirm: "Are you  sure?"} %>
             <%= link_to "Edit this food", edit_food_path(food) %>
           </td>
-          
         </tr>
       <% end %>
     </tbody>
