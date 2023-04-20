@@ -1,12 +1,39 @@
 <div id="<%= dom_id recipe %>">
-  <% if user_signed_in? %>
+  <% if recipe_display == 'public' %>
     <p>
-      <%= "Recipe #{recipe.id}" %>
+      <strong>Name:</strong>
+      <%= recipe.name %>
     </p>
+
+    <p>
+      <strong>Prep time:</strong>
+      <%= recipe.prep_time.inspect %>
+    </p>
+
+    <p>
+      <strong>Cook time:</strong>
+      <%= recipe.cook_time.inspect %>
+    </p>
+
     <p>
       <strong>Description:</strong>
       <%= recipe.description %>
     </p>
+
+    <p>
+      <strong>Public:</strong>
+      <%= recipe.public %>
+    </p>
+  <% elsif recipe_display == 'user_owned' %>
+    <p>
+      <%= "Recipe #{recipe.id}" %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= recipe.description %>
+    </p>
+
     <% if can? :destroy, recipe %>
       <%= button_to "remove", recipe_path(recipe.id), method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
     <% end %>
@@ -36,4 +63,7 @@
       <%= recipe.public %>
     </p>
   <% end %>
+  <p>
+    <%= link_to "Show this recipe", recipe %>
+  </p>
 </div>

@@ -1,6 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
-<%= render @recipe %>
+  <%= render partial: "recipe", locals: {recipe_display: 'details', recipe: @recipe} %>
 
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |

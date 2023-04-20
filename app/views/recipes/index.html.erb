@@ -1,19 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
+<h1><%= @recipe_display == 'public' ? "Public Recipes" : "Recipes" %></h1>
 
 <div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <% if can? :read, recipe %>
-      <%= render recipe %>
-    
-      <p>
-        <%= link_to "Show this recipe", recipe %>
-      </p>
-    <% end %>
-  <% end %>
+  <%= render partial: "recipe", collection: @recipes, locals:{recipe_display: @recipe_display} %>  
 </div>
-
-<% if can? :create, Recipe && user_signed_in? %>
+<% if can? :create, Recipe %>
   <%= link_to "New recipe", new_recipe_path %>
 <% end %>

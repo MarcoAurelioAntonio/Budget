@@ -17,13 +17,17 @@
   </div>
 
   <div>
+    <% hours = recipe.prep_time.nil? ? 0 : recipe.prep_time.to_i / 3600 %>
+    <% minutes = recipe.prep_time.nil? ? 0 : recipe.prep_time.to_i % 3600 %>
     <%= form.label :prep_time, "Preparation Time", style: "display: block" %>
-    <%= form.time_select :prep_time %>
+    <%= form.time_select :pp_time, {selected: Time.new(2000, 1, 1, hours, minutes)} %>
   </div>
 
   <div>
+    <% hours = recipe.cook_time.nil? ? 0 : recipe.cook_time / 3600 %>
+    <% minutes = recipe.cook_time.nil? ? 0 : recipe.cook_time % 3600 %>
     <%= form.label :cook_time, "Cooking Time", style: "display: block" %>
-    <%= form.time_select :cook_time %>
+    <%= form.time_select :ck_time, {selected: Time.new(2000, 1, 1, hours, minutes)} %>
   </div>
 
   <div>
