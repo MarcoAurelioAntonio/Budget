@@ -19,7 +19,7 @@ class User < ApplicationRecord
     role == 'user'
   end
 
-  def self.new_gest
+  def self.new_guest
     guest = find_by(guest: true)
     guest.nil? ? create(name: 'Guest', guest: true) : guest
   end
