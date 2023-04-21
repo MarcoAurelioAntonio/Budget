@@ -16,11 +16,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @inventory.inventory_foods.each do |inventory_food| %>
+      <% @inventory.inventory_foods.includes([:food]).each do |inventory_food| %>
         <tr class="table__row">
           <td class="table__cell"><%= inventory_food.food.name %></td>
           <td class="table__cell text-center"><%= inventory_food.quantity %></td>
-          <td class="table__cell text-center"><%= link_to 'Delete', inventory_inventory_food_path(@inventory, inventory_food),class:"btn btn--danger",  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+          <td class="table__cell text-center"><%= link_to 'Delete', inventory_inventory_food_path(@inventory, inventory_food),class:"btn btn--danger" %></td>
         </tr>
       <% end %>
     </tbody>
