@@ -1,9 +1,5 @@
-/**************************\
-  Basic Modal Styles
-\**************************/
-
 .modal {
-  font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
 .modal__overlay {
@@ -12,7 +8,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +51,7 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   line-height: 1.5;
-  color: rgba(0,0,0,.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .modal__btn {
@@ -65,8 +61,8 @@
   padding-top: .5rem;
   padding-bottom: .5rem;
   background-color: #e6e6e6;
-  color: rgba(0,0,0,.8);
-  border-radius: .25rem;
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.25rem;
   border-style: none;
   border-width: 0;
   cursor: pointer;
@@ -82,8 +78,8 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   transition: -webkit-transform .25s ease-out;
-  transition: transform .25s ease-out;
-  transition: transform .25s ease-out,-webkit-transform .25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
 }
 
 .modal__btn:focus, .modal__btn:hover {
@@ -96,11 +92,6 @@
   color: #fff;
 }
 
-
-
-/**************************\
-  Demo Animation Style
-\**************************/
 @keyframes mmfadeIn {
     from { opacity: 0; }
       to { opacity: 1; }
@@ -134,7 +125,7 @@
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  animation: mmslideIn .3s cubic-bezier(0, 0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__overlay {
@@ -142,7 +133,7 @@
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  animation: mmslideOut .3s cubic-bezier(0, 0, 0.2, 1);
 }
 
 .micromodal-slide .modal__container,
