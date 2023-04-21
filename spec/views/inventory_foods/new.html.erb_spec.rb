@@ -24,4 +24,20 @@ RSpec.describe 'invenroty_foods/new.html.erb', type: :feature do
       expect(page).to have_content("Add Food to #{inventory.name}")
     end
   end
+
+  context 'when user is logged in shows' do
+    before do
+      user.confirm
+      sign_in user
+      visit new_inventory_inventory_food_path(inventory.id)
+    end
+
+    it 'the inventories page title' do
+      expect(page).to have_content("Add Food to #{inventory.name}")
+    end
+
+    it 'the button for Back to Inventories' do
+      expect(page).to have_content('Back to Inventory')
+    end
+  end
 end
