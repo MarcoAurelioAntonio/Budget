@@ -60,4 +60,30 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
       expect(page).to have_no_content('Delete')
     end
   end
+
+  context 'when user is logged in and link click' do
+    before do
+      user.confirm
+      sign_in user
+      visit inventory_path(inventory)
+    end
+
+    it 'redirects me to a specif inventory' do
+      click_link('Back to Inventories', href: inventories_path)
+      expect(page).to have_current_path(inventories_path)
+    end
+
+    it 'redirects me to a add another inventory' do
+      click_link('Add Food', href: new_inventory_inventory_food_path(inventory.id))
+
+      expect(page).to have_current_path(new_inventory_inventory_food_path(inventory.id))
+    end
+    it 'redirects me to a add another inventory' do
+      inventory.inventory_foods.each do |inventory_food|
+        click_link('Delete', href: inventory_inventory_food_path(inventory_food.id))
+        expect(page).to have_current_path(inventory.id)
+        expect(page).not_to have_content(inventory.name)
+      end
+    end
+  end
 end
