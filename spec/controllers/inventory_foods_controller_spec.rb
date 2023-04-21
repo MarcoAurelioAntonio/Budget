@@ -204,5 +204,21 @@ RSpec.describe InventoryFoodsController, type: :controller do
         expect(response).to have_http_status(:redirect)
       end
     end
+
+    context 'when user is not logged in' do
+      let(:inventory_food) { InventoryFood.create(inventory_id: inventory.id, food_id: food.id, quantity: 10) }
+
+      it 'redirects to the sign in page' do
+        delete :destroy, params: { inventory_id: inventory.id, id: inventory_food.id }
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'returns http redirect' do
+        delete :destroy, params: { inventory_id: inventory.id, id: inventory_food.id }
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
