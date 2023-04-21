@@ -2,8 +2,8 @@ class ShoppingListController < ApplicationController
   skip_authorization_check only: :index
   def index
     # URL params from recipe/show to http://localhost:3000/shopping_list?recipe_id=1&inventory_id=1
-    # @recipe = Recipe.find(params[:recipe_id])
-    # @inventory = Inventory.find(params[:inventory_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
 
     # Create the `recipe` hash with recipe data
     recipe = {
