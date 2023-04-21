@@ -25,4 +25,29 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
       expect(page).to have_content('All Inventories')
     end
   end
+
+  context 'when user is logged in shows' do
+    before do
+      user.confirm
+      sign_in user
+      visit inventories_path
+    end
+
+    it 'the inventories page title' do
+      expect(page).to have_content('All Inventories')
+    end
+
+    it 'the name of the inventories' do
+      expect(page).to have_content(inventory.name)
+      expect(page).to have_content(inventory2.name)
+    end
+
+    it 'the delete button' do
+      expect(page).to have_content('Delete')
+    end
+
+    it 'the show button' do
+      expect(page).to have_content('Show')
+    end
+  end
 end
