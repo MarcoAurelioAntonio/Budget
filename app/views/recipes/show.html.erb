@@ -44,23 +44,20 @@
         Choose an inventory to use.
         </p>
 
-        <%= form_with url: shopping_list_path, method: :get  do |form| %>
+        <%= form_with url: @shopping_list_path, method: :get  do |form| %>
+          <%= hidden_field(:recipe, :id, name: 'recipe_id') %>
+          
           <div>
-            <%= form.label :food_id, style: "display: block" %>
-            <%= form.select :food_id, Inventory.all.map {|inventory| [inventory.name, inventory.id]} %>
+            <%= form.label :inventory_id, style: "display: block" %>
+            <%= form.select :inventory_id, Inventory.all.map {|inventory| [inventory.name, inventory.id]} %>
           </div>
         
           <div>
-            <%= form.submit %>
+            <%= form.submit "Generate" %>
           </div>
         <% end %>
 
       </main>
-      <footer class="modal__footer">
-        <%= button_to "Generate", user_path(@user.id), method: :get, params: {recipe_id: @recipe.id, inventory_id:  } %>
-        <button class="modal__btn modal__btn-primary">Generate</button>
-        <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
-      </footer>
     </div>
   </div>
 </div>
