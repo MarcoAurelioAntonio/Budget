@@ -1,2 +1,28 @@
-<h1>Inventories#show</h1>
-<p>Find me in app/views/inventories/show.html.erb</p>
+<div class="container">
+  <div class="inventories__top">
+    <h1><%= @inventory.name %></h1>
+    <%= link_to 'Back to Inventories', inventories_path, class:"btn btn--danger" %>
+  </div>
+  <div class="inventories__top">
+    <h2>Foods</h2>
+    <%= link_to 'Add Food', new_inventory_inventory_food_path(inventory_id: @inventory.id), class:"btn btn--primary" %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="table__row">
+        <th class="table__header">Food</th>
+        <th class="table__header">Quantity</th>
+        <th class="table__header">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventory.inventory_foods.each do |inventory_food| %>
+        <tr class="table__row">
+          <td class="table__cell"><%= inventory_food.food.name %></td>
+          <td class="table__cell text-center"><%= inventory_food.quantity %></td>
+          <td class="table__cell text-center"><%= link_to 'Delete', inventory_inventory_food_path(@inventory, inventory_food),class:"btn btn--danger",  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
