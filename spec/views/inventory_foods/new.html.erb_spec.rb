@@ -40,4 +40,27 @@ RSpec.describe 'invenroty_foods/new.html.erb', type: :feature do
       expect(page).to have_content('Back to Inventory')
     end
   end
+
+  context 'when user is logged in and link click' do
+    before do
+      user.confirm
+      sign_in user
+      visit new_inventory_inventory_food_path(inventory.id)
+    end
+
+    it 'redirects me to a specif inventory' do
+      click_link('Back to Inventory', href: inventory_path(inventory.id))
+
+      expect(page).to have_current_path(inventory_path(inventory.id))
+    end
+
+    it 'redirects me to a add another inventory' do
+      select 'Fettuccine Alfredo', from: 'inventory_food[food_id]'
+      fill_in 'inventory_food[quantity]', with: '10'
+      click_button 'Add Food'
+      expect(page).to have_text('Food added successfully')
+      expect(page).to have_text('Fettuccine Alfredo')
+      expect(page).to have_text('10')
+    end
+  end
 end
