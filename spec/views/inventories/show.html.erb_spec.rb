@@ -26,4 +26,38 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
     end
   end
 
+  context 'when user is logged in shows' do
+    before do
+      user.confirm
+      sign_in user
+      visit inventory_path(inventory)
+    end
+
+    it 'the inventory page title' do
+      expect(page).to have_content(inventory.name)
+    end
+
+    it 'the name of the inventory food name' do
+      inventory.inventory_foods.each do |inventory_food|
+        expect(page).to have_content(inventory_food.food.name)
+      end
+    end
+
+    it 'the name of the inventory food quantity' do
+      inventory.inventory_foods.each do |inventory_food|
+        expect(page).to have_content(inventory_food.quantity)
+      end
+    end
+
+    it 'the button for Back to Inventories' do
+      expect(page).to have_content('Back to Inventories')
+    end
+    it 'the button for add new food in the inventory' do
+      expect(page).to have_content('Add Food')
+    end
+
+    it 'deletes an inventory food item from the inventory' do
+      expect(page).to have_no_content('Delete')
+    end
+  end
 end
