@@ -10,12 +10,17 @@ class ShoppingListController < ApplicationController
       'Carrot' => { quantity: 2, price: 0.5 }
     }
 
+    recipe = @recipe.recipe_foods.to_h { |recipe_food| [recipe_food.food.name, { quantity: recipe_food.quantity, price: recipe_food.food.price }] }
+
     # Create the `inventory` hash with inventory data
     inventory = {
       'Carrot' => 4,
       'Tomato' => 1
     }
 
+    inventory = @inventory.inventory_foods.to_h { |inventory_food| [inventory_food.food.name, inventory_food.quantity] }
+    puts recipe
+    puts inventory
     # Initialize hash to store shopping list data
     shopping_list_data = {}
 

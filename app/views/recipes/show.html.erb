@@ -44,7 +44,7 @@
         Choose an inventory to use.
         </p>
 
-        <%= form_with url: @shopping_list_path, method: :get  do |form| %>
+        <%= form_with url: shopping_list_path, method: :get  do |form| %>
           <%= hidden_field(:recipe, :id, name: 'recipe_id') %>
           
           <div>
