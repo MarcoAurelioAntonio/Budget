@@ -33,6 +33,7 @@ class Ability
     # Define a few sample abilities
     can :read, Recipe, public: true
     can :manage, Food
+    can :manage, RecipeFood
 
     if user.admin?
       can :manage, :all
@@ -48,8 +49,6 @@ class Ability
       can :destroy, Recipe, user_id: user.id
       can :create, Recipe
       can :update, Recipe, user_id: user.id
-      puts 'User'
-      puts user.guest
     end
   end
 end

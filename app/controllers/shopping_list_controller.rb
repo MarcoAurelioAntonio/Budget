@@ -2,19 +2,16 @@ class ShoppingListController < ApplicationController
   skip_authorization_check only: :index
   def index
     # URL params from recipe/show to http://localhost:3000/shopping_list?recipe_id=1&inventory_id=1
-    # @recipe = Recipe.find(params[:recipe_id])
-    # @inventory = Inventory.find(params[:inventory_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
 
     # Create the `recipe` hash with recipe data
-    recipe = {
-      'Carrot' => { quantity: 2, price: 0.5 }
-    }
+    recipe = @recipe.recipe_foods.to_h do |recipe_food|
+      [recipe_food.food.name, { quantity: recipe_food.quantity, price: recipe_food.food.price }]
+    end
 
     # Create the `inventory` hash with inventory data
-    inventory = {
-      'Carrot' => 4,
-      'Tomato' => 1
-    }
+    inventory = @inventory.inventory_foods.to_h { |inventory_food| [inventory_food.food.name, inventory_food.quantity] }
 
     # Initialize hash to store shopping list data
     shopping_list_data = {}

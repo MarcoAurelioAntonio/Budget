@@ -1,0 +1,9 @@
+<h1>Editing recipe food</h1>
+
+<%= render "form", recipe_food: @recipe_food %>
+
+<br>
+
+<div>
+  <%= link_to "Cancel", recipe_path(@recipe_food.recipe) %>
+</div>

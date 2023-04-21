@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root to: 'users#index'
   get '/public_recipes', to: 'recipes#index'
   resources :users
-  resources :recipes
+  resources :recipes do
+    resources :recipe_foods
+  end
   resources :foods
   
   get '/shopping_list', to: 'shopping_list#index'
