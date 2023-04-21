@@ -1,23 +1,23 @@
 <h1>Shopping List</h1>
-<p>Amount of food to buy = <%= @total_quantity %></p>
-<p>Total value of food needed = <%= @total_value %></p>
-<p>Recipe <%= @recipe.id %> = <%= link_to 'Recipe', recipe_path(@recipe) %></p>
-<p>Inventory <%= @inventory.id %> = <%= link_to 'Inventory', inventory_path(@inventory) %></p>
+<p style="text-align:center;">Amount of food to buy = <%= @total_food_to_buy %></p>
+<p style="text-align:center;">Total value of food needed = <%= @total_value_needed %></p>
 
-<table>
+<table id="foods">
   <thead>
     <tr>
       <th>Food</th>
       <th>Quantity</th>
-      <th>Price</th>
+      <th>Price per Unit</th>
+      <th>Total Price</th>
     </tr>
   </thead>
   <tbody>
-    <% @shopping_list.each do |food_name, details| %>
+    <% @shopping_list_data.each do |food_name, data| %>
       <tr>
         <td><%= food_name %></td>
-        <td><%= details[:quantity] %></td>
-        <td><%= details[:price] %></td>
+        <td><%= data[:quantity_needed] %></td>
+        <td><%= data[:price_per_unit] %></td>
+        <td><%= data[:total_price] %></td>
       </tr>
     <% end %>
   </tbody>
