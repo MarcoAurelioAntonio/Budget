@@ -34,4 +34,21 @@ class InventoryFoodsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @inventory = Inventory.find(params[:inventory_id])
+    @inventory_food = @inventory.inventory_foods.find_by(id: params[:id])
+    if current_user
+      if @inventory_food.nil?
+        redirect_to inventory_path(@inventory), notice: 'Food not found.'
+      elsif @inventory.user != current_user
+        redirect_to inventories_path, notice: "You don't have permission to delete food from this inventory."
+      else
+        @inventory_food.destroy
+        redirect_to inventory_path(@inventory), notice: 'Food deleted successfully.'
+      end
+    else
+      redirect_to new_user_session_path, notice: 'Please sign in to destroy food to the inventory.'
+    end
+  end
 end
