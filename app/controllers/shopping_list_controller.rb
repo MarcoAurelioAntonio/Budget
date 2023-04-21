@@ -7,16 +7,13 @@ class ShoppingListController < ApplicationController
 
     # Create the `recipe` hash with recipe data
     recipe = {
-      "Carrot" => { quantity: 2, price: 0.5 },
-      "Tomato" => { quantity: 3, price: 0.3 },
-      "Potato" => { quantity: 1, price: 0.8 }
+      'Carrot' => { quantity: 2, price: 0.5 }
     }
 
     # Create the `inventory` hash with inventory data
     inventory = {
-      "Carrot" => 4,
-      "Tomato" => 1,
-      "Potato" => 0
+      'Carrot' => 4,
+      'Tomato' => 1
     }
 
     # Initialize hash to store shopping list data
@@ -28,21 +25,18 @@ class ShoppingListController < ApplicationController
       quantity_needed = recipe_data[:quantity] - inventory[food_name]
 
       # Add food to shopping list if quantity needed is positive
-      if quantity_needed > 0
-        shopping_list_data[food_name] = {
-          quantity_needed: quantity_needed,
-          price_per_unit: recipe_data[:price],
-          total_price: quantity_needed * recipe_data[:price]
-        }
-      end
+      next unless quantity_needed.positive?
+
+      shopping_list_data[food_name] = {
+        quantity_needed:,
+        price_per_unit: recipe_data[:price],
+        total_price: quantity_needed * recipe_data[:price]
+      }
     end
 
     @total_food_to_buy = shopping_list_data.values.sum { |data| data[:quantity_needed] }
     @total_value_needed = shopping_list_data.values.sum { |data| data[:total_price] }
 
-
     @shopping_list_data = shopping_list_data
-
   end
-
 end
