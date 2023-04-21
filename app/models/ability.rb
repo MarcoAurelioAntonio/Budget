@@ -49,8 +49,6 @@ class Ability
       can :destroy, Recipe, user_id: user.id
       can :create, Recipe
       can :update, Recipe, user_id: user.id
-      puts 'User'
-      puts user.guest
     end
   end
 end
