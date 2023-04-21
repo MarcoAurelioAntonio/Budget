@@ -42,4 +42,26 @@ RSpec.describe 'inventories/new.html.erb', type: :feature do
       expect(page).to have_content('Back to Inventories')
     end
   end
+
+  context 'when user is logged in and link click' do
+    before do
+      user.confirm
+      sign_in user
+      visit new_inventory_path
+    end
+
+    it 'redirects me to a specif inventory' do
+      click_link('Back to Inventories', href: inventories_path)
+
+      expect(page).to have_current_path(inventories_path)
+    end
+
+    it 'redirects me to a add another inventory' do
+      fill_in 'inventory_name', with: 'My New Inventory'
+      click_button 'Create Inventory'
+      expect(page).to have_current_path(inventories_path)
+      expect(page).to have_content('Inventory was successfully created.')
+      expect(page).to have_content('My New Inventory')
+    end
+  end
 end
