@@ -82,5 +82,27 @@ RSpec.describe InventoryFoodsController, type: :controller do
         expect(response).to have_http_status(:redirect)
       end
     end
+
+    context 'when user is logged in and the food does not exist' do
+      before do
+        user.confirm
+        sign_in user
+
+        post :create,
+             params: { inventory_id: inventory.id, inventory_food: { food_id: food.id, quantity: 5 } }
+      end
+
+      it 'creates a new inventory_food record' do
+        expect(inventory.inventory_foods.find_by(food_id: food.id).quantity).to eq(5)
+      end
+
+      it 'redirects to the inventory page' do
+        expect(response).to redirect_to(inventory_path(inventory))
+      end
+
+      it 'returns http redirect' do
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
