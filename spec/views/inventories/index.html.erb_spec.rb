@@ -20,7 +20,6 @@ RSpec.describe 'recipes/index.html.erb', type: :feature do
       fill_in 'Password', with: user.password
 
       click_button 'Log in'
-      puts page.body
 
       expect(page).to have_content('All Inventories')
     end
