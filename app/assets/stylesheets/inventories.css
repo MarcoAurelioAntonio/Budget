@@ -1,0 +1,26 @@
+.inventories__top {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inventories__title {
+  color: #2a2f4f;
+}
+
+.inventories__form {
+  margin-top: 32px;
+}
+
+.inventories__form-group {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.inventories__form-label {
+}
+.inventories__form-field {
+}
