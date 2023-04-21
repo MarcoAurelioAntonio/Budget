@@ -95,17 +95,17 @@
 
 @keyframes mmfadeIn {
   from { opacity: 0; }
-    to { opacity: 1; }
+  to { opacity: 1; }
 }
 
 @keyframes mmfadeOut {
   from { opacity: 1; }
-    to { opacity: 0; }
+  to { opacity: 0; }
 }
 
 @keyframes mmslideIn {
   from { transform: translateY(15%); }
-    to { transform: translateY(0); }
+  to { transform: translateY(0); }
 }
 
 @keyframes mmslideOut {
@@ -119,6 +119,11 @@
 
 .micromodal-slide.is-open {
   display: block;
+}
+
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+  will-change: transform;
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__overlay {
@@ -137,7 +142,4 @@
   animation: mmslideOut .3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.micromodal-slide .modal__container,
-.micromodal-slide .modal__overlay {
-  will-change: transform;
-}
+
