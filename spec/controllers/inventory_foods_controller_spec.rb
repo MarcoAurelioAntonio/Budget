@@ -177,5 +177,32 @@ RSpec.describe InventoryFoodsController, type: :controller do
         expect(response).to have_http_status(:redirect)
       end
     end
+
+    context 'when user is logged in but does not own the inventory' do
+      before do
+        other_user.confirm
+        user.confirm
+        sign_in user
+      end
+
+      it 'does not remove the inventory food from the database' do
+        inventory_food2 = InventoryFood.create(inventory_id: other_inventory.id, food_id: food.id, quantity: 10)
+
+        expect do
+          delete :destroy, params: { inventory_id: inventory.id, id: inventory_food2.id }
+        end.to_not change(InventoryFood, :count)
+      end
+
+      it 'redirects to the inventory list page' do
+        delete :destroy, params: { inventory_id: inventory.id, id: inventory_food.id }
+        expect(response).to redirect_to(inventory_path(inventory.id))
+      end
+
+      it 'returns http redirect' do
+        delete :destroy, params: { inventory_id: inventory.id, id: inventory_food.id }
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
