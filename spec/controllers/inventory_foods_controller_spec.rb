@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe InventoryFoodsController, type: :controller do
   let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
   let(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
-  let(:food) { Food.create(name: 'Fettuccine Alfredo', quantity: '23', price: 10.0) }
+  let(:food) { Food.create(name: 'Fettuccine Alfredo', measurement_unit: 'unit', price: 10.0) }
   let(:inventory_food) { InventoryFood.create(id: 97, quantity: 5, inventory:, food:) }
 
   describe 'GET #new' do
@@ -58,7 +58,7 @@ RSpec.describe InventoryFoodsController, type: :controller do
     let(:other_user) { User.create(name: 'Shahadat Hossain2', email: 'test2@example.com', password: '12345678') }
     let(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
     let(:other_inventory) { Inventory.create(name: 'Inventory 2', user: other_user) }
-    let(:food) { Food.create(name: 'Fettuccine Alfredo', quantity: '23', price: 10.0) }
+    let(:food) { Food.create(name: 'Fettuccine Alfredo', measurement_unit: 'unit', price: 10.0) }
 
     context 'when user is logged in and the food already exists' do
       before do
@@ -149,7 +149,7 @@ RSpec.describe InventoryFoodsController, type: :controller do
     let(:other_user) { User.create(name: 'Shahadat Hossain2', email: 'test2@example.com', password: '12345678') }
     let(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
     let(:other_inventory) { Inventory.create(name: 'Inventory 2', user: other_user) }
-    let(:food) { Food.create(name: 'Fettuccine Alfredo', quantity: '23', price: 10.0) }
+    let(:food) { Food.create(name: 'Fettuccine Alfredo', measurement_unit: 'unit', price: 10.0) }
 
     context 'when user is logged in and owns the inventor' do
       before do
