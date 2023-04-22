@@ -20,7 +20,7 @@
           <td class="table__cell"><%= inventory.user.name %></td>
           <td class="table__cell">
             <%= link_to_unless_current 'Show', inventory_path(inventory), class:"btn btn--success" %>
-            <%= link_to 'Delete', inventory_path(inventory), class:"btn btn--danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <%= link_to 'Delete', inventory_path(inventory), method: :delete, class: "btn btn--danger" %>
           </td>
         </tr>
       <% end %>

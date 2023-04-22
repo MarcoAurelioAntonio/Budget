@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'recipes/show.html.erb', type: :feature do
+RSpec.describe 'inventories/show.html.erb', type: :feature do
   let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
   let!(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
   let(:food) { Food.create(name: 'Fettuccine Alfredo', quantity: '23', price: 10.0) }
@@ -52,6 +52,7 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
     it 'the button for Back to Inventories' do
       expect(page).to have_content('Back to Inventories')
     end
+
     it 'the button for add new food in the inventory' do
       expect(page).to have_content('Add Food')
     end
@@ -70,6 +71,7 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
 
     it 'redirects me to a specif inventory' do
       click_link('Back to Inventories', href: inventories_path)
+
       expect(page).to have_current_path(inventories_path)
     end
 
@@ -78,9 +80,11 @@ RSpec.describe 'recipes/show.html.erb', type: :feature do
 
       expect(page).to have_current_path(new_inventory_inventory_food_path(inventory.id))
     end
+
     it 'redirects me to a add another inventory' do
       inventory.inventory_foods.each do |inventory_food|
         click_link('Delete', href: inventory_inventory_food_path(inventory_food.id))
+
         expect(page).to have_current_path(inventory.id)
         expect(page).not_to have_content(inventory.name)
       end

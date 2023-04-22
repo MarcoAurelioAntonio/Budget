@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'recipes/index.html.erb', type: :feature do
+RSpec.describe 'inventories/index.html.erb', type: :feature do
   let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
   let!(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
   let!(:inventory2) { Inventory.create(name: 'Inventory 2', user:) }
