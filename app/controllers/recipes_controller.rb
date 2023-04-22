@@ -22,9 +22,10 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
+    @recipe = Recipe.find(params[:id])
     return if @recipe
 
-    redirect_to recipes_path, notice: "Recipey not found with id = #{params[:id]}"
+    redirect_to recipes_path, notice: "Recipe not found with id = #{params[:id]}"
   end
 
   # GET /recipes/new
