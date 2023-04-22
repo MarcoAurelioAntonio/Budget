@@ -32,7 +32,7 @@ class InventoriesController < ApplicationController
     @inventory = @user.inventory.new(inventory_params)
 
     if @inventory.save
-      redirect_to inventories_path(@inventory), notice: 'Inventory was successfully created.'
+      redirect_to inventories_path, notice: 'Inventory was successfully created.'
     else
       render :new
     end

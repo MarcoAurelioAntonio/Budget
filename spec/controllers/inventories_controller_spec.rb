@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe InventoriesController, type: :controller do
   let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
   let(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
+
   describe 'GET #index' do
     context 'when user is logged in' do
       before do
@@ -12,21 +13,25 @@ RSpec.describe InventoriesController, type: :controller do
 
       it 'returns http success' do
         get :index
+
         expect(response).to have_http_status(:success)
       end
 
       it 'assigns the current user to @user' do
         get :index
+
         expect(assigns(:user)).to eq user
       end
 
       it "assigns the user's inventories to @inventories" do
         get :index
+
         expect(assigns(:inventories)).to eq [inventory]
       end
 
       it 'renders the index template' do
         get :index
+
         expect(response).to render_template :index
       end
     end
@@ -34,12 +39,13 @@ RSpec.describe InventoriesController, type: :controller do
     context 'when user is not logged in' do
       it 'redirects to the login page' do
         get :index
+
         expect(response).to redirect_to new_user_session_path
-        expect(response).to have_http_status(:redirect)
       end
 
       it 'returns http redirect' do
         get :index
+
         expect(response).to have_http_status(:redirect)
       end
     end
@@ -129,22 +135,26 @@ RSpec.describe InventoriesController, type: :controller do
 
       it 'returns a success response' do
         get :new
+
         expect(response).to be_successful
       end
 
       it 'assigns a new inventory' do
         get :new
+
         expect(assigns(:inventory)).to be_a_new(Inventory)
         expect(assigns(:inventory).user).to eq(user)
       end
 
       it 'assigns to current user' do
         get :new
+
         expect(assigns(:inventory).user).to eq(user)
       end
 
       it 'renders the new template' do
         get :new
+
         expect(response).to render_template(:new)
       end
     end
@@ -152,12 +162,13 @@ RSpec.describe InventoriesController, type: :controller do
     context 'when user is not logged in' do
       it 'redirects to the login page' do
         get :new
+
         expect(response).to redirect_to new_user_session_path
-        expect(response).to have_http_status(:redirect)
       end
 
       it 'returns http redirect' do
         get :new
+
         expect(response).to have_http_status(:redirect)
       end
     end
@@ -182,11 +193,13 @@ RSpec.describe InventoriesController, type: :controller do
 
       it 'redirects to the inventory page' do
         post :create, params: valid_params
-        expect(response).to redirect_to(inventories_path(assigns(:inventory)))
+
+        expect(response).to redirect_to(inventories_path)
       end
 
       it 'sets a flash notice' do
         post :create, params: valid_params
+
         expect(flash[:notice]).to eq('Inventory was successfully created.')
       end
     end
@@ -207,6 +220,7 @@ RSpec.describe InventoriesController, type: :controller do
 
       it 'renders the new template' do
         post :create, params: invalid_params
+
         expect(response).to render_template(:new)
       end
     end
@@ -214,6 +228,7 @@ RSpec.describe InventoriesController, type: :controller do
     context 'when user is not logged in' do
       it 'redirects to the login page' do
         post :create, params: { inventory: { name: 'Test Inventory' } }
+
         expect(response).to redirect_to(new_user_session_path)
         expect(response).to have_http_status(:redirect)
       end
@@ -248,11 +263,13 @@ RSpec.describe InventoriesController, type: :controller do
 
       it 'redirects to the inventories index page' do
         delete :destroy, params: { id: inventory.id }
+
         expect(response).to redirect_to(inventories_path)
       end
 
       it 'displays a success message' do
         delete :destroy, params: { id: inventory.id }
+
         expect(flash[:notice]).to eq('Inventory was successfully deleted.')
       end
     end

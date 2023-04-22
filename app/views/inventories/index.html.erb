@@ -1,2 +1,29 @@
-<h1>Inventories#index</h1>
-<p>Find me in app/views/inventories/index.html.erb</p>
+<div class="container">
+  <div class="inventories">
+    <div class="inventories__top">
+      <h1 class="inventories__title">All Inventories</h1>
+      <%= link_to 'New Inventory',  new_inventory_path ,class:"btn btn--primary" %>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="table__row">
+        <th class="table__header">Name</th>
+        <th class="table__header">User</th>
+        <th class="table__header">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inventories.each do |inventory| %>
+        <tr class="table__row">
+          <td class="table__cell"><%= inventory.name %></td>
+          <td class="table__cell"><%= inventory.user.name %></td>
+          <td class="table__cell">
+            <%= link_to_unless_current 'Show', inventory_path(inventory), class:"btn btn--success" %>
+            <%= link_to 'Delete', inventory_path(inventory), method: :delete, class: "btn btn--danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
