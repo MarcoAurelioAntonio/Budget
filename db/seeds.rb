@@ -1,75 +1,92 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+# Delete existing data
+RecipeFood.delete_all
+InventoryFood.delete_all
+Recipe.delete_all
+Food.delete_all
+Inventory.delete_all
+User.delete_all
+
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('inventories')
+ActiveRecord::Base.connection.reset_pk_sequence!('foods')
+ActiveRecord::Base.connection.reset_pk_sequence!('recipes')
+ActiveRecord::Base.connection.reset_pk_sequence!('inventory_foods')
+ActiveRecord::Base.connection.reset_pk_sequence!('recipe_foods')
 
 
-# crea 15 alimentos con datos aleatorios
-# 30.times do
-#   name = Faker::Food.dish
-#   quantity = rand(1.0..10.0).round(2)
-#   price = rand(1.0..10.0).round(2)
-#   Food.create!(name: name, quantity: quantity, price: price)
-#   end
+# Seed Users
+users = []
+5.times do
+  user = User.create(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: 'password',
+    confirmed_at: Time.now
+  )
+  users << user
+end
 
-user = User.create(
-  name: 'Admin',
-  email: 'admin@admin.com',
-  password: 'password'
-)
+# Seed Inventories
+inventories = []
+users.each do |user|
+  rand(3..5).times do
+    inventory = user.inventory.create(name: Faker::Commerce.department)
+    inventories << inventory
+  end
+end
 
-inv = Inventory.create(
-  name: 'Home',
-  user_id: user.id
-)
+# Seed Foods
+foods = []
 
-food = Food.create(
-  name: 'Carrot',
-  measurement_unit: 'kg',
-  price: 0.5
-)
+20.times do
+  food = Food.create(
+    name: Faker::Food.ingredient,
+    measurement_unit: Faker::Food.measurement.split(' ', 2)[1],
+    price: Faker::Number.between(from: 1, to: 100)
+  )
+  foods << food
+end
 
-food2 = Food.create(
-  name: 'Tomato',
-  measurement_unit: 'kg',
-  price: 1.5
-)
+# Seed Inventory Foods
+inventories.each do |inventory|
+  rand(3..6).times do
+    inventory_food = InventoryFood.create(
+      quantity: Faker::Number.between(from: 1, to: 10),
+      inventory_id: inventory.id,
+      food_id: foods.sample.id
+    )
+  end
+end
 
-InventoryFood.create(
-  inventory_id: inv.id,
-  food_id: food.id,
-  quantity: 4
-)
+# Seed Recipes
+recipes = []
 
-InventoryFood.create(
-  inventory_id: inv.id,
-  food_id: food2.id,
-  quantity: 5
-)
+users.each do |user|
+  rand(3..5).times do
+    recipe = user.recipes.create(
+      name: Faker::Food.dish,
+      prep_time: rand(5..50).minutes,
+      cook_time: rand(5..50).minutes,
+      description: Faker::Food.description,
+      public: Faker::Boolean.boolean
+    )
+    recipes << recipe
+  end
+end
 
-rec = Recipe.create(
-  name: 'Carrot Soup',
-  user_id: user.id,
-  prep_time: 3.hours,
-  cook_time: 1.hours,
-  public: true
-)
+# Seed Recipe Foods.
+recipe_foods = []
 
-rec_food1 = RecipeFood.create(
-  recipe_id: rec.id,
-  food_id: food.id,
-  quantity: 10
-)
-
-rec_food2 = RecipeFood.create(
-  recipe_id: rec.id,
-  food_id: food2.id,
-  quantity: 20
-)
-
-
-
-
+recipes.each do |recipe|
+  rand(3..6).times do
+    recipe_food = RecipeFood.create(
+      quantity: Faker::Number.between(from: 1, to: 10),
+      food_id: foods.sample.id,
+      recipe_id: recipe.id
+    )
+    puts recipe_food.attributes
+    recipe_foods << recipe_food
+  end
+end
