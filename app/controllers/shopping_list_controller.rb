@@ -19,7 +19,7 @@ class ShoppingListController < ApplicationController
     # Iterate over recipe foods to determine how much of each is needed
     recipe.each do |food_name, recipe_data|
       # Calculate quantity needed
-      quantity_needed = recipe_data[:quantity] - inventory[food_name]
+      quantity_needed = recipe_data[:quantity] - (inventory[food_name].nil? ? 0 : inventory[food_name])
 
       # Add food to shopping list if quantity needed is positive
       next unless quantity_needed.positive?
