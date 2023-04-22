@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # get 'shopping_list/index'
   devise_for :users
 
-  root to: 'users#index'
+  root to: 'recipes#index'
   get '/public_recipes', to: 'recipes#index'
   resources :users
   resources :recipes do
