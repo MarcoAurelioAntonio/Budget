@@ -2,15 +2,17 @@
 
 <h1>Users</h1>
 
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
-</div>
+<section class="general-container">
+  <div id="users">
+    <% @users.each do |user| %>
+      <%= render user %>
+      <p>
+        <%= link_to "Show this user", user, class: 'show-user' %>
+      </p>
+    <% end %>
+  </div>
 
-<% if can? :create, @user %>
-  <%= link_to "New user", new_user_path %>
-<% end %>
+  <% if can? :create, @user %>
+    <%= link_to "New user", new_user_path, class: 'new-user' %>
+  <% end %>
+</section>

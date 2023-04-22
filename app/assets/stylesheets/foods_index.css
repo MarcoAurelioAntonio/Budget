@@ -16,7 +16,8 @@
 }
 
 /* Style for title */
-h1 {
+h1,
+h2 {
   font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
