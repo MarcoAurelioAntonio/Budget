@@ -21,7 +21,11 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    unless @recipe
+      redirect_to recipes_path, notice: "Recipey not found with id = #{params[:id]}"
+    end
+  end
 
   # GET /recipes/new
   def new
@@ -36,11 +40,10 @@ class RecipesController < ApplicationController
   def create
     # @recipe = current_or_guest_user.recipes.new(recipe_params)
     @recipe.user_id = current_or_guest_user.id
-    puts 'Aquí recipe'
-    puts @recipe
+    
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
+        format.html { redirect_to recipes_path, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,11 +67,15 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
-    @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-      format.json { head :no_content }
+    if @recipe
+      if @recipe.user == current_user
+        @recipe.destroy
+        redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+      else
+        redirect_to recipes_path, notice: 'You are not authorized to delete this recipe.'
+      end
+    else
+      redirect_to recipes_path, notice: "Recipe not found with id = #{params[:id]}"
     end
   end
 
