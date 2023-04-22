@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # Add it to bypass the authorization check of cancancan
   skip_authorization_check
@@ -12,6 +12,10 @@ class FoodsController < ApplicationController
   # GET /foods/1 or /foods/1.json
   def show
     @food = Food.find(params[:id])
+
+    return if @food
+
+    redirect_to foods_path, notice: "Food not found with id = #{params[:id]}"
   end
 
   # GET /foods/new
@@ -28,14 +32,10 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
 
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
+    if @food.save
+      redirect_to foods_path, notice: 'Food was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -57,14 +57,13 @@ class FoodsController < ApplicationController
   # DELETE /foods/1 or /foods/1.json
   def destroy
     @food = Food.find(params[:id])
-    @food.destroy
 
-    redirect_to foods_path
-
-    # respond_to do |format|
-    #  format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
-    #  format.json { head :no_content }
-    # end
+    if @food
+      @food.destroy
+      redirect_to foods_path, notice: 'Food was successfully deleted.'
+    else
+      redirect_to foods_path, notice: "Food not found with id = #{params[:id]}"
+    end
   end
 
   private
