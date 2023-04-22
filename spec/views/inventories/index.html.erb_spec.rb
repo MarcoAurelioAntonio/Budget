@@ -59,6 +59,7 @@ RSpec.describe 'inventories/index.html.erb', type: :feature do
 
     it 'redirects me to a specif inventory' do
       click_link('Show', href: inventory_path(inventory))
+
       expect(page).to have_current_path(inventory_path(inventory.id))
     end
 

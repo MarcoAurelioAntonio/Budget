@@ -59,6 +59,7 @@ RSpec.describe 'inventories/new.html.erb', type: :feature do
     it 'redirects me to a add another inventory' do
       fill_in 'inventory_name', with: 'My New Inventory'
       click_button 'Create Inventory'
+
       expect(page).to have_current_path(inventories_path)
       expect(page).to have_content('Inventory was successfully created.')
       expect(page).to have_content('My New Inventory')

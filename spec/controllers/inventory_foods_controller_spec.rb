@@ -195,6 +195,7 @@ RSpec.describe InventoryFoodsController, type: :controller do
 
       it 'redirects to the inventory list page' do
         delete :destroy, params: { inventory_id: inventory.id, id: inventory_food.id }
+
         expect(response).to redirect_to(inventory_path(inventory.id))
       end
 

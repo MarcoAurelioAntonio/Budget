@@ -58,6 +58,7 @@ RSpec.describe 'invenroty_foods/new.html.erb', type: :feature do
       select 'Fettuccine Alfredo', from: 'inventory_food[food_id]'
       fill_in 'inventory_food[quantity]', with: '10'
       click_button 'Add Food'
+
       expect(page).to have_text('Food added successfully')
       expect(page).to have_text('Fettuccine Alfredo')
       expect(page).to have_text('10')
