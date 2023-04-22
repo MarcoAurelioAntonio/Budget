@@ -17,7 +17,7 @@ RSpec.describe FoodsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it "assigns foods to @foods" do
+      it 'assigns foods to @foods' do
         get :index
 
         expect(assigns(:foods)).to eq [food]

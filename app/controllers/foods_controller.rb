@@ -13,9 +13,9 @@ class FoodsController < ApplicationController
   def show
     @food = Food.find(params[:id])
 
-    unless @food
-      redirect_to foods_path, notice: "Food not found with id = #{params[:id]}"
-    end
+    return if @food
+
+    redirect_to foods_path, notice: "Food not found with id = #{params[:id]}"
   end
 
   # GET /foods/new
