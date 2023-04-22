@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'invenroty_foods/new.html.erb', type: :feature do
   let(:user) { User.create(name: 'Shahadat Hossain', email: 'test@example.com', password: '12345678') }
   let!(:inventory) { Inventory.create(name: 'Inventory 1', user:) }
-  let!(:food) { Food.create(name: 'Fettuccine Alfredo', quantity: '23', price: 10.0) }
-  let!(:food2) { Food.create(name: 'Fettuccine Alfredo2', quantity: '23', price: 10.0) }
+  let!(:food) { Food.create(name: 'Fettuccine Alfredo', measurement_unit: 'unit', price: 10.0) }
+  let!(:food2) { Food.create(name: 'Fettuccine Alfredo2', measurement_unit: 'unit', price: 10.0) }
 
   context 'when user is not logged in' do
     before do
