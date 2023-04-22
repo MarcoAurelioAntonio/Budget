@@ -85,7 +85,7 @@ h6 {
 }
 
 .btn:active {
-  box-shadow: 0 0 9e9Q inset #0009;
+  box-shadow: 0 0 9e9q inset #0009;
   background-color: #070a52;
 }
 
@@ -100,7 +100,7 @@ h6 {
 }
 
 .btn--success:active {
-  box-shadow: 0 0 9e9Q inset #0009;
+  box-shadow: 0 0 9e9q inset #0009;
   background-color: #479c2b;
 }
 
@@ -115,7 +115,7 @@ h6 {
 }
 
 .btn--primary:active {
-  box-shadow: 0 0 9e9Q inset #0009;
+  box-shadow: 0 0 9e9q inset #0009;
   background-color: #3f40fa;
 }
 
@@ -130,7 +130,7 @@ h6 {
 }
 
 .btn--danger:active {
-  box-shadow: 0 0 9e9Q inset #0009;
+  box-shadow: 0 0 9e9q inset #0009;
   background-color: #e74646;
 }
 

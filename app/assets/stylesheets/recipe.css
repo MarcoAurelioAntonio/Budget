@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .recipe__card {
   display: flex;
   width: 100%;
@@ -19,6 +20,7 @@
   flex-direction: column;
   gap: 8px;
 }
+
 .recipe__card-right {
   text-align: left;
 }
