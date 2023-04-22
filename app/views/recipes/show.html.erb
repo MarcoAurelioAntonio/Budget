@@ -1,10 +1,8 @@
 <p style="color: green"><%= notice %></p>
-  <%= render partial: "recipe", locals: {recipe_display: 'details', recipe: @recipe} %>
-
+<%= render partial: "recipe", locals: {recipe_display: 'details', recipe: @recipe} %>
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>
-
   <button data-micromodal-trigger="modal-1" type="button">Generate</button>
   <%= button_to "Add ingredient", new_recipe_recipe_food_path(@recipe), method: :get %>
   <hr>
@@ -23,7 +21,7 @@
           <%= render "recipe_foods/recipe_food_record", recipe_food: recipe_food %>
           <td class="actions">
             <%= link_to "Modify", edit_recipe_recipe_food_path(@recipe, recipe_food) %>
-            <%= link_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), data: { turbo_method: :delete, turbo_confirm: "Are you  sure?"} %>            
+            <%= link_to "Remove", recipe_recipe_food_path(@recipe, recipe_food), data: { turbo_method: :delete, turbo_confirm: "Are you  sure?"} %>
           </td>
         </tr>
       <% end %>
@@ -41,22 +39,18 @@
       </header>
       <main class="modal__content" id="modal-1-content">
         <p>
-        Choose an inventory to use.
+          Choose an inventory to use.
         </p>
-
         <%= form_with url: shopping_list_path, method: :get  do |form| %>
           <%= hidden_field(:recipe, :id, name: 'recipe_id') %>
-          
           <div>
             <%= form.label :inventory_id, style: "display: block" %>
             <%= form.select :inventory_id, Inventory.all.map {|inventory| [inventory.name, inventory.id]} %>
           </div>
-        
           <div>
             <%= form.submit "Generate" %>
           </div>
         <% end %>
-
       </main>
     </div>
   </div>

@@ -1,10 +1,36 @@
-<p style="color: green"><%= notice %></p>
-
-<h1><%= @recipe_display == 'public' ? "Public Recipes" : "Recipes" %></h1>
-
-<div id="recipes">
-  <%= render partial: "recipe", collection: @recipes, locals:{recipe_display: @recipe_display} %>  
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <div class="recipes__top">
+    <h1><%= @recipe_display == 'public' ? "Public Recipes" : "Recipes" %></h1>
+    <% if can? :create, Recipe %>
+      <%= link_to "New recipe", new_recipe_path, class:"btn btn--primary" %>
+    <% end %></div>
+  <div id="recipes">
+    <% @recipes.each do |recipe| %>
+      <% if @recipe_display == 'public' %>
+        <div class="recipe__card space-between">
+          <div class="recipe__card-left">
+            <p><strong><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></strong></p>
+            <p>By: <%= User.find(recipe.user_id).name %></p>
+          </div>
+          <div class="recipe__card-right">
+            <p><span> Total food items: </span><%= recipe.total_food_items %></p>
+            <p><span> Total price: $</span><%= recipe.total_price %></p>
+          </div>
+        </div>
+      <% elsif @recipe_display == 'user_owned' %>
+        <div class="recipe__card">
+          <div class="recipe__card-left">
+            <p><strong><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></strong></p>
+            <% if can? :destroy, recipe %>
+              <%= button_to "REMOVE", recipe, method: :delete, class: "btn btn--danger" %>
+            <% end %>
+          </div>
+          <div class="recipe__card-right">
+            <%= recipe.description %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-<% if can? :create, Recipe %>
-  <%= link_to "New recipe", new_recipe_path %>
-<% end %>
