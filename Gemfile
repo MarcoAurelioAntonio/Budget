@@ -92,3 +92,6 @@ gem 'cancancan'
 gem 'faker'
 # Add Devise Guests gem for guest user management
 gem 'devise-guests'
+
+# Adding email_validator gem for email validation
+gem 'email_validator', '~> 2.2', '>= 2.2.4'
