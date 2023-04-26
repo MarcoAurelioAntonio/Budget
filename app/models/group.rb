@@ -12,7 +12,7 @@ class Group < ApplicationRecord
   validates :icon, presence: true, length: { maximum: 500 },
                    format: { with: %r{\Ahttps://.+\z}, message: 'Debe ser una URL con el protocolo HTTPS' }
 
-	def total_expenses
-		expenses.sum(:amount)
-	end
+  def total_expenses
+    expenses.sum(:amount)
+  end
 end
