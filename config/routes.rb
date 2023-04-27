@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "users#index"
+  root "users#home"
 
   # This was creted by the command: rails g scaffold...
 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   #  resources :expenses, only: [:index, :new, :create, :edit, :update, :destroy], :path => "transactions"
   #end
 
-  resources :users
+  resources :users, only: [ :home ]
 
   resources :groups, only: %i[index new create edit update destroy] do
     resources :expenses, only: %i[index new create edit update destroy]
