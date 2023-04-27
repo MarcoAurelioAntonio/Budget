@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # Home page for unauthenticated users (see app/controllers/application_controller.rb)
   def home
     if current_user
-      # redirect_to groups_url, alert: "You are already logged in as, #{current_user.name}"
+      #redirect_to groups_path, alert: "You are already logged in as, #{current_user.name}"
     else
       render :home
     end
@@ -66,6 +66,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def redirect_to_categories
+    redirect_to groups_path
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

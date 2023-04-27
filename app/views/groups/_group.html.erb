@@ -1,17 +1,14 @@
-<div id="<%= dom_id group %>">
-  <p>
-    <strong>Author:</strong>
-    <%= group.author_id %>
-  </p>
+<div class="group">
+  <div>
+    <%= link_to group do%><img src="<%= group.icon %>" class="group-icon" alt="Group-Icon"><%end%>
+  </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= group.name %>
-  </p>
+  <div class="group-name">
+    <%= link_to group do%><%= group.name %><%end%>
+  </div>
 
-  <p>
-    <strong>Icon:</strong>
-    <%= group.icon %>
+  <p class="group-total-expenses">$
+    <%= group.total_expenses %>
   </p>
 
 </div>

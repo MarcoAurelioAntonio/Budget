@@ -62,19 +62,19 @@ body {
 }
 
 .login-button {
-  background-color: #f7b731;
+  background-color: #5fb523;
 }
 
 .login-button:hover {
-  background-color: #f5a623;
+  background-color: #3a6e15;
 }
 
 .register-button {
-  background-color: #6c5ce7;
+  background-color: #3778c2;
 }
 
 .register-button:hover {
-  background-color: #4834d4;
+  background-color: #3778a0;
 }
 
 /* Responsive Styles */

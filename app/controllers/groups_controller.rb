@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[edit update destroy]
+  before_action :set_user, only: %i[index new edit create update destroy]
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all
+    @groups = @author.groups
   end
 
   # GET /groups/1 or /groups/1.json
@@ -56,6 +57,10 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @author = current_user
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_group
