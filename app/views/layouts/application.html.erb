@@ -13,8 +13,9 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if current_user %>
+      <%= render 'layouts/nav' %>
+    <% end %>
 
     <%= yield %>
   </body>
