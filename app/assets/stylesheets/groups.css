@@ -52,7 +52,7 @@
 }
 
 .group-name {
-  width: 50%;
+  width: 30%;
   font-size: 1rem;
   align-items: flex-start;
 }
@@ -66,6 +66,28 @@
   width: 20%;
   font-size: 1rem;
   align-items: center;
+}
+
+.group-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 20%;
+}
+
+.edit-actions {
+  text-decoration: none;
+  color: #434b54;
+  width: 35px;
+  cursor: pointer;
+}
+
+.delete-actions {
+  width: 35px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #434b54;
 }
 
 /* Responsive Styles */
