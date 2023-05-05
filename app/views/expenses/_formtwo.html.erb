@@ -24,11 +24,5 @@
   <div>
     <%= form.submit %>
   </div>
-  
-  <% @expenses.each do |cat| %>
-    <div>
-      <%= form.check_box :expense,{ multiple: true }, cat.id, nil %>
-      <%= form.label cat.name %>
-    </div>
-  <% end %>
+
 <% end %>

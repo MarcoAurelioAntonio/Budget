@@ -14,6 +14,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new
   def new
     @expense = Expense.new
+    @expenses = @group.expenses.order(created_at: :desc)
   end
 
   # GET /expenses/1/edit
