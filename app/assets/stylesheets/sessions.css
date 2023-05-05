@@ -1,0 +1,43 @@
+.controller-name {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.sign-up {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.field {
+  width: 100%;
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.field input {
+  width: 97%;
+  height: 9vh;
+}
+
+input[type="text"] {
+  text-indent: 20px;
+}
+
+input::placeholder {
+  color: #999;
+  text-indent: 20px;
+  font-size: 1.2rem;
+}
+
+.links {
+  text-align: center;
+}
+
+.links a {
+  color: #999;
+  text-decoration: none;
+}
