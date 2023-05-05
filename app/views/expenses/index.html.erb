@@ -1,14 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<p class="notice"><%= notice %></p>
 
-<h1>Expenses</h1>
-
-<div id="expenses">
+<div class="groups">
   <% @expenses.each do |expense| %>
     <%= render expense %>
-    <p>
-      <%= link_to "Show this expense", group_expenses_path(@group, expense) %>
-    </p>
   <% end %>
 </div>
 
-<%= link_to "New expense", new_group_expense_path %>
+<div class="div-button">
+  <%= link_to "New expense", new_group_expense_path, class: 'new-group' %>
+</div>

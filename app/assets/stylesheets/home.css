@@ -79,6 +79,13 @@ body {
   background-color: #3778a0;
 }
 
+.notice {
+  color: green;
+  background: #f3f3f3;
+  text-align: center;
+  padding-top: 5px;
+}
+
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
   .header {

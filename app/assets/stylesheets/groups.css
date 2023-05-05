@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7px 7px 0 7px;
+  padding: 7px 7px 7px 7px;
   background-color: #f3f3f3;
   row-gap: 10px;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .div-button {
@@ -38,23 +38,33 @@
 /* Every group */
 .group {
   width: 500px;
+  min-height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   background-color: #fff;
+  box-shadow: #434b54 1px 1px 5px;
 }
 
 .group-icon {
   padding: 6px 0 0 0;
   width: 50px;
-  margin: auto;
+  margin: 8px;
 }
 
 .group-name {
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
   font-size: 1rem;
   align-items: flex-start;
+  margin: 8px;
+}
+
+.small {
+  font-size: 0.8rem;
+  color: #434b54;
 }
 
 .group-name a {
@@ -63,7 +73,7 @@
 }
 
 .group-total-expenses {
-  width: 20%;
+  margin-right: 10px;
   font-size: 1rem;
   align-items: center;
 }
@@ -73,11 +83,12 @@
   flex-direction: row;
   justify-content: flex-end;
   width: 20%;
+  margin-right: 8px;
 }
 
 .edit-actions {
   text-decoration: none;
-  color: #434b54;
+  color: rgb(89, 89, 162);
   width: 35px;
   cursor: pointer;
 }
@@ -87,7 +98,7 @@
   cursor: pointer;
   border: none;
   background: none;
-  color: #434b54;
+  color: rgb(226, 114, 114);
 }
 
 /* Responsive Styles */

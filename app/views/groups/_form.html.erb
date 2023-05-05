@@ -1,6 +1,6 @@
 <%= form_with(model: group, class:'form-container') do |form| %>
   <% if group.errors.any? %>
-    <div class="error">
+    <div style="color: red">
       <h3><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h3>
 
       <ul>

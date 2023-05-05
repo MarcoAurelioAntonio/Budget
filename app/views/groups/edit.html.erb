@@ -1,8 +1,3 @@
-<h1 class="edit-group-title">Edit your <span class="bold"><%= "#{@group.name}" %></span> Group</h1>
+<h2 class="edit-group-title">Edit your <span class="bold"><%= "#{@group.name}" %></span> Group</h2>
 
 <%= render "form", group: @group %>
-
-
-<div class="button-container">
-  <%= link_to "Back to groups", groups_path, class: "my-button" %>
-</div>

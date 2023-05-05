@@ -25,7 +25,9 @@
       <% end %>
       <h3 class="nav-title">
         <% if controller_name == 'expenses' %>
-          <%= 'Transactions' %>
+          <%= 'Total Expenses:' %>
+          $<%= @group.total_expenses %>
+          
         <% else %>
           <%= 'Categories' %>
         <% end %>

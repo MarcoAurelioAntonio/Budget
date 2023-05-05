@@ -5,10 +5,11 @@
 
   <div class="group-name">
     <%= link_to group_expenses_path(group) do%><%= group.name %><%end%>
+    <span class='small'><%= group.created_at.to_date %></span>
   </div>
 
-  <p class="group-total-expenses">$
-    <%= group.total_expenses %>
+  <p class="group-total-expenses">
+    <%= number_to_currency(group.total_expenses) %>
   </p>
 
   <% if action_name != "show" %>
