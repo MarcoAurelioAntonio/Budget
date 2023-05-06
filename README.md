@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<h3><b>My BUDGET</b></h3>
+<h3><b>Money Blackhole</b></h3>
 
 <!-- TABLE OF CONTENTS -->
 
@@ -29,7 +29,7 @@
 
 # 📖 Smart Budget <a name="about-project"></a>
 
-**Smart Budget** is a mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what. The Ruby on Rails application allows the user to:
+**Money Blackhole** is a mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what. The Ruby on Rails application allows the user to:
 
  - Register and log in, so that the data is private to them.
  - Introduce new transactions associated with a category.
@@ -82,7 +82,7 @@
 <!-- Project Documentation -->
 ## 📽️ Project Doocumentation <a name="documentation"></a>
 
-Here is a link to the video [documentation]() of the project.
+Here is a link to the video [documentation](https://www.loom.com/share/e54c4a5ac48c4d3e91bbdb9c4cb5b0c1) of the project.
 
 <!-- LIVE DEMO -->
 ## 🚀 Live Demo <a name="live-demo"></a>
@@ -130,18 +130,9 @@ Create Database
   rails db:seed
 ```
 
-### Usage <a name="usage"></a>
-To run the project, execute the following command:
-
-```sh
-  rails tailwindcss:build
-  rails s
-``` 
-
 ### Run tests <a name="run-tests"></a>
+
 ```
-  rails db:migrate RAILS_ENV=test
-  rails db:seed RAILS_ENV=test
   rspec
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
