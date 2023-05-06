@@ -1,0 +1,109 @@
+/* Group list */
+.groups {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px 7px 7px 7px;
+  background-color: #f3f3f3;
+  row-gap: 10px;
+  min-height: 83vh;
+}
+
+.div-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: #5fb523;
+  z-index: 1;
+}
+
+/* Button */
+.new-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  width: 97%;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #5fb523;
+  border: 0.1px solid #fff;
+  border-radius: 3px;
+}
+
+/* Every group */
+.group {
+  width: 500px;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: #434b54 1px 1px 5px;
+}
+
+.group-icon {
+  padding: 6px 0 0 0;
+  width: 50px;
+  margin: 8px;
+}
+
+.group-name {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  font-size: 1rem;
+  align-items: flex-start;
+  margin: 8px;
+}
+
+.small {
+  font-size: 0.8rem;
+  color: #434b54;
+}
+
+.group-name a {
+  text-decoration: none;
+  color: #434b54;
+}
+
+.group-total-expenses {
+  margin-right: 10px;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.group-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 20%;
+  margin-right: 8px;
+}
+
+.edit-actions {
+  text-decoration: none;
+  color: rgb(89, 89, 162);
+  width: 35px;
+  cursor: pointer;
+}
+
+.delete-actions {
+  width: 35px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: rgb(226, 114, 114);
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+  .group {
+    width: 95vw;
+  }
+}

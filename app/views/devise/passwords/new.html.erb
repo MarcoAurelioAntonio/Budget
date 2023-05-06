@@ -1,0 +1,18 @@
+<nav class="nav-container">
+  <h3 class="controller-name">Forgot yur password?</h3>
+</nav>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: 'sign-up') do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Use your sign up email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions", class: 'button' %>
+  </div>
+<% end %>
+
+<div class="links">
+  <%= render "devise/shared/links" %>
+</div>

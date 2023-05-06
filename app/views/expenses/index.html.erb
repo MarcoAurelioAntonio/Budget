@@ -1,0 +1,11 @@
+<p class="notice"><%= notice %></p>
+
+<div class="groups">
+  <% @expenses.each do |expense| %>
+    <%= render expense %>
+  <% end %>
+</div>
+
+<div class="div-button">
+  <%= link_to "New expense", new_group_expense_path, class: 'new-group' %>
+</div>

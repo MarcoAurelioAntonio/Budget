@@ -1,0 +1,88 @@
+.edit-group-title {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Estilos para el formulario */
+.form-container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+/* Estilos para los títulos */
+.form-container h3 {
+  color: #3778c2;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+/* Estilos para los mensajes de error */
+.form-container .error {
+  color: red;
+}
+
+/* Estilos para los campos del formulario */
+.form-container label {
+  display: block;
+  color: #434b54;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container input[type="submit"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  resize: vertical;
+  overflow: auto;
+  background: #f3f3f3;
+}
+
+/* Estilo para el botón de enviar */
+.form-container input[type="submit"] {
+  background-color: #5fb523;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: #3778c2;
+}
+
+.button-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.my-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #3778c2;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.my-button:hover {
+  background-color: #5fb523;
+}

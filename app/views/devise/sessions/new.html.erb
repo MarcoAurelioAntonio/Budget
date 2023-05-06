@@ -1,0 +1,20 @@
+<nav class="nav-container">
+  <h3 class="controller-name">Sign In</h3>
+</nav>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'sign-up') do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Your email here" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: 'button' %>
+  </div>
+<% end %>
+
+<div class="links">
+  <%= render "devise/shared/links", class: 'links' %>
+</div>
