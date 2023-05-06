@@ -98,7 +98,7 @@ To get a local copy up and running, follow these steps.
 ### Setup <a name="setup"></a>
 Open the terminal and clone the project
 ```
- git clone git@github.com:MarcoOquendoC/Budget-app.git
+ git clone https://github.com/MarcoAurelioAntonio/Budget
  cd Budget-app
 ```
 
