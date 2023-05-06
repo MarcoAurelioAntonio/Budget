@@ -54,6 +54,7 @@
   margin-bottom: 10px;
   resize: vertical;
   overflow: auto;
+  background: #f3f3f3;
 }
 
 /* Estilo para el botón de enviar */
